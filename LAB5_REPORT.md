@@ -290,23 +290,11 @@ git commit -m "Добавлен функционал управления зад
 
 В рамках этой feature-ветки был добавлен файл `task_manager.py`. В нем реализована простая функция создания задачи: она принимает название и описание, формирует словарь с данными задачи, выводит подтверждающее сообщение и возвращает готовую структуру. 
 
-Коммит фичи:
-
-```bash
-e6176b8 Добавлен функционал управления задачами
-```
-
 Завершение фичи было выполнено слиянием в `develop`:
 
 ```bash
 git checkout develop
 git merge --no-ff feature/task-management -m "Merge branch 'feature/task-management' into develop"
-```
-
-Merge-коммит:
-
-```bash
-f676549 Merge branch 'feature/task-management' into develop
 ```
 
 После завершения работы над функциональностью ветка `feature/task-management` была объединена с `develop` через `merge --no-ff`. Этот способ слияния сохраняет в истории отдельный merge-коммит и позволяет наглядно видеть, что именно в проект был добавлен законченный блок изменений. 
@@ -328,12 +316,6 @@ git commit -m "Обновлена версия для релиза v1.0.0"
 
 В рамках релизной ветки был добавлен файл `version.txt`, в который записано значение `v1.0.0`. Это имитирует типичную релизную задачу: обновление версии, служебных файлов или метаданных перед выпуском новой версии приложения.
 
-Коммит релиза:
-
-```bash
-fe0fd6c Обновлена версия для релиза v1.0.0
-```
-
 Завершение релиза:
 
 ```bash
@@ -342,13 +324,6 @@ git merge --no-ff release/v1.0.0 -m "Merge branch 'release/v1.0.0'"
 git tag -a v1.0.0 -m "Release v1.0.0"
 git checkout develop
 git merge --no-ff release/v1.0.0 -m "Merge branch 'release/v1.0.0' into develop"
-```
-
-Merge-коммиты:
-
-```bash
-00bffbb Merge branch 'release/v1.0.0'
-c4e4f28 Merge branch 'release/v1.0.0' into develop
 ```
 
 После этого релизная ветка была последовательно объединена с `main` и `develop`. Слияние в `main` означает выпуск готовой версии, а слияние обратно в `develop` нужно для того, чтобы релизные изменения не потерялись в основной ветке разработки. Дополнительно для релиза был создан тег `v1.0.0`, который фиксирует конкретную точку в истории проекта и позволяет однозначно определить состояние репозитория на момент выпуска версии.
@@ -370,12 +345,6 @@ git commit -m "Исправлена критическая ошибка"
 
 В рамках ветки `hotfix/hotfix-1.0.1` был добавлен файл `file_with_error.py`, содержащий исправленную функцию `safe_divide`, которая предотвращает деление на ноль. Одновременно файл `version.txt` был обновлен до версии `v1.0.1`, что отражает выпуск исправленной версии.
 
-Коммит hotfix:
-
-```bash
-8e626dc Исправлена критическая ошибка
-```
-
 Завершение hotfix:
 
 ```bash
@@ -384,13 +353,6 @@ git merge --no-ff hotfix/hotfix-1.0.1 -m "Merge branch 'hotfix/hotfix-1.0.1'"
 git tag -a v1.0.1 -m "Hotfix v1.0.1"
 git checkout develop
 git merge --no-ff hotfix/hotfix-1.0.1 -m "Merge branch 'hotfix/hotfix-1.0.1' into develop"
-```
-
-Merge-коммиты:
-
-```bash
-7d9014b Merge branch 'hotfix/hotfix-1.0.1'
-9749f8d Merge branch 'hotfix/hotfix-1.0.1' into develop
 ```
 
 После завершения исправления hotfix был слит в `main`, чтобы обновить стабильную версию проекта, и в `develop`, чтобы ветка разработки также содержала исправление. Для этой версии был создан тег `v1.0.1`. 
@@ -431,14 +393,6 @@ git push origin main develop
 1. Ветку `develop`.
 2. Ветку `main`.
 3. Теги `v1.0.0` и `v1.0.1`.
-
-Итог успешной отправки:
-
-```bash
-To https://github.com/valerieefim/git_practice_info.git
-   9749f8d..7abbee2  develop -> develop
-   ca9c3e9..4e1f2ce  main -> main
-```
 
 ### 8.6. Как эта же работа выполняется с git flow
 
@@ -518,53 +472,6 @@ git push --tags
 
 Таким образом, работа с `git flow` повторяет ту же самую логику, которая была реализована вручную в первой версии задания, но делает процесс более формализованным и удобным за счет готовых команд для feature-, release- и hotfix-веток.
 
-## 9. Итоговая история проекта
-
-Фрагмент итоговой истории коммитов:
-
-```bash
-*   7abbee2 (HEAD -> develop, origin/develop) Merge branch 'main' into develop
-|\  
-| *   4e1f2ce (origin/main, main) Merge remote-tracking branch 'origin/main' into main
-| |\  
-| | *   ca9c3e9 Merge pull request #1 from valerieefim/feature-login
-| | |\  
-| | | *   4bded1c (origin/feature-login) Merge branch 'main' into feature-login
-| | | |\  
-| | | |/  
-| | |/|   
-| | | * 3665c9d (feature-login) Добавлен раздел о магии конфликтов
-| | | * 12c93f5 Добавлена глава 3: Вход в систему
-| * | |   7d9014b (tag: v1.0.1) Merge branch 'hotfix/hotfix-1.0.1'
-| |\ \ \  
-* | \ \ \   9749f8d Merge branch 'hotfix/hotfix-1.0.1' into develop
-|\ \ \ \ \  
-| | |/ / /  
-| |/| | |   
-| * | | | 8e626dc Исправлена критическая ошибка
-| |/ / /  
-| * | |   00bffbb (tag: v1.0.0) Merge branch 'release/v1.0.0'
-| |\ \ \  
-| | |/ /  
-| |/| |   
-* | | |   c4e4f28 Merge branch 'release/v1.0.0' into develop
-|\ \ \ \  
-| | |/ /  
-| |/| |   
-| * | | fe0fd6c Обновлена версия для релиза v1.0.0
-|/ / /  
-* | |   f676549 Merge branch 'feature/task-management' into develop
-|\ \ \  
-| |/ /  
-|/| |   
-| * | e6176b8 Добавлен функционал управления задачами
-|/ /  
-* / d0ecae7 Изменено название книги и введение
-|/  
-* 6c19ee7 (origin/feature-branch, feature-branch) File changed example.txt
-* 8779996 File added example.txt
-```
-
-## Вывод
+## Вывод по лабораторной работе
 
 В ходе лабораторной работы были закреплены практические навыки работы с Git и GitHub. Были выполнены операции по созданию и ведению репозитория, работе с ветками, разрешению конфликтов, настройке автоматической проверки `.txt` файлов через `pre-commit` hook, а также моделированию процесса Git Flow с использованием веток `develop`, `feature`, `release` и `hotfix`. В результате проект был успешно синхронизирован с удаленным репозиторием, а история изменений стала наглядной и структурированной.
