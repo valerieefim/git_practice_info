@@ -4,7 +4,7 @@
 
 ## Данные о работе
 
-- Студент: Валерия Ефим
+- Студент: Валерия Ефимова
 - Репозиторий: `git_practice_info`
 - URL удаленного репозитория: `https://github.com/valerieefim/git_practice_info.git`
 - Основные ветки проекта: `main`, `develop`
